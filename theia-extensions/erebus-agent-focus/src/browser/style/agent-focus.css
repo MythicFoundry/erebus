@@ -9,8 +9,8 @@
     --erebus-border-soft: rgba(221, 208, 235, 0.1);
     --erebus-text: #f4f0f7;
     --erebus-text-secondary: #c3bbc9;
-    --erebus-muted: #938b9c;
-    --erebus-faint: #6d6675;
+    --erebus-muted: #aaa2b2;
+    --erebus-faint: #938b9c;
     --erebus-accent: #9362ff;
     --erebus-accent-strong: #7d3fe8;
     --erebus-accent-soft: rgba(147, 98, 255, 0.16);
@@ -1650,6 +1650,14 @@ body.erebus-agent-focus-mode #theia-top-panel {
     gap: 8px;
 }
 
+.erebus-tool-list span small {
+    margin-left: auto;
+    color: var(--erebus-muted);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
 .erebus-message-metrics {
     display: flex;
     gap: 14px;
@@ -2407,6 +2415,59 @@ body.erebus-agent-focus-mode #theia-top-panel {
     display: flex;
     flex-direction: column;
     gap: 4px;
+}
+
+.erebus-task-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 5px;
+    border-radius: 6px;
+}
+
+.erebus-task-item.is-complete {
+    opacity: 0.72;
+}
+
+.erebus-task-row > span {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.erebus-task-row small {
+    color: var(--erebus-faint);
+    font-size: 9px;
+}
+
+.erebus-task-confirm {
+    margin-right: 4px;
+    padding: 3px 7px;
+    border: 1px solid rgba(172, 137, 255, 0.36);
+    border-radius: 5px;
+    color: #cbb6ff !important;
+    background: rgba(139, 92, 246, 0.1);
+    font-size: 9px;
+    cursor: pointer;
+}
+
+.erebus-task-confirm:disabled {
+    opacity: 0.45;
+    cursor: default;
+}
+
+.erebus-workflow-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 8px;
+    padding: 3px 7px;
+    border: 1px solid rgba(172, 137, 255, 0.25);
+    border-radius: 999px;
+    color: #cbb6ff;
+    background: rgba(139, 92, 246, 0.08);
+    font-size: 9px;
 }
 
 .erebus-task-row {
@@ -3332,6 +3393,91 @@ body.erebus-agent-focus-mode #theia-top-panel {
 .erebus-context-panel,
 .erebus-settings-panel {
     animation: erebus-panel-in 170ms ease-out;
+}
+
+.erebus-welcome-panel {
+    display: grid;
+    min-width: 0;
+    min-height: 0;
+    place-items: center;
+    overflow: auto;
+    background:
+        radial-gradient(circle at 50% 25%, rgba(141, 91, 255, 0.12), transparent 38%),
+        var(--erebus-chat);
+}
+
+.erebus-welcome-card {
+    width: min(520px, calc(100% - 48px));
+    padding: 52px 42px;
+    border: 1px solid rgba(172, 137, 255, 0.18);
+    border-radius: 18px;
+    text-align: center;
+    background: rgba(27, 22, 32, 0.72);
+    box-shadow: 0 22px 70px rgba(0, 0, 0, 0.24);
+}
+
+.erebus-welcome-card > .erebus-agent-mark {
+    margin: 0 auto 18px;
+}
+
+.erebus-welcome-card h1 {
+    margin: 8px 0 10px;
+    color: var(--erebus-text);
+    font-size: 28px;
+}
+
+.erebus-welcome-card p {
+    margin: 0 auto;
+    color: var(--erebus-muted);
+    font-size: 12px;
+    line-height: 1.65;
+}
+
+.erebus-welcome-actions {
+    display: flex;
+    justify-content: center;
+    gap: 9px;
+    margin-top: 24px;
+}
+
+.erebus-welcome-actions button {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    min-height: 34px;
+    padding: 0 13px;
+    border: 1px solid var(--erebus-border);
+    border-radius: 7px;
+    color: var(--erebus-text-secondary);
+    background: rgba(255, 255, 255, 0.025);
+    cursor: pointer;
+}
+
+.erebus-show-more-sessions {
+    display: flex;
+    width: calc(100% - 16px);
+    margin: 3px 8px 7px;
+    padding: 6px 8px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    color: #baa0f5 !important;
+    background: transparent;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.erebus-show-more-sessions:hover,
+.erebus-show-more-sessions:focus-visible {
+    border-color: rgba(172, 137, 255, 0.18);
+    background: rgba(139, 92, 246, 0.07);
+}
+
+.erebus-show-more-sessions small {
+    color: var(--erebus-faint);
+    font-size: 9px;
 }
 
 .erebus-attention-card + .erebus-attention-card {

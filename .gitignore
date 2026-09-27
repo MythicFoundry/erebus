@@ -12,3 +12,5 @@ license-check-summary.txt*
 .theia-ide/chatSessions
 .prompts
 **/test-screenshots
+playwright-report/
+test-results/

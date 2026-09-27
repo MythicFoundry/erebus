@@ -13,6 +13,18 @@ module.exports = {
     ],
     parserOptions: {
         tsconfigRootDir: __dirname,
-        project: ['./configs/tsconfig.eslint.json', './theia-extensions/*/tsconfig.json', 'applications/electron/tsconfig.eslint.json']
-    }
+        project: ['./configs/tsconfig.eslint.json', './theia-extensions/*/tsconfig.json', 'applications/electron/tsconfig.eslint.json', './e2e/tsconfig.json']
+    },
+    overrides: [{
+        files: ['e2e/**/*.js'],
+        extends: ['eslint:recommended'],
+        env: {
+            browser: true,
+            node: true,
+            es2021: true
+        },
+        parserOptions: {
+            project: './e2e/tsconfig.json'
+        }
+    }]
 };

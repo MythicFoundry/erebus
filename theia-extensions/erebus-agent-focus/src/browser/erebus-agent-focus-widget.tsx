@@ -9,6 +9,8 @@
 
 import * as React from 'react';
 import { ChatAgentService, ChatService } from '@theia/ai-chat';
+import { ToolConfirmationManager } from '@theia/ai-chat/lib/browser/chat-tool-preference-bindings';
+import { ToolInvocationRegistry } from '@theia/ai-core';
 import { CommonCommands, Message, ReactWidget } from '@theia/core/lib/browser';
 import { CommandService } from '@theia/core/lib/common/command';
 import { inject, injectable, postConstruct } from '@theia/core/shared/inversify';
@@ -33,6 +35,12 @@ export class ErebusAgentFocusWidget extends ReactWidget {
     @inject(ChatAgentService)
     protected readonly chatAgentService: ChatAgentService;
 
+    @inject(ToolConfirmationManager)
+    protected readonly toolConfirmationManager: ToolConfirmationManager;
+
+    @inject(ToolInvocationRegistry)
+    protected readonly toolInvocationRegistry: ToolInvocationRegistry;
+
     @postConstruct()
     protected init(): void {
         this.id = ErebusAgentFocusWidget.ID;
@@ -41,13 +49,16 @@ export class ErebusAgentFocusWidget extends ReactWidget {
         this.title.iconClass = 'codicon codicon-sparkle';
         this.title.closable = false;
         this.addClass('erebus-agent-focus-widget');
-        this.node.tabIndex = 0;
+        this.node.tabIndex = -1;
         this.update();
     }
 
     protected onActivateRequest(message: Message): void {
         super.onActivateRequest(message);
         this.node.focus({ preventScroll: true });
+        window.requestAnimationFrame(() => {
+            this.node.querySelector<HTMLElement>('[data-agent-focus-autofocus]')?.focus({ preventScroll: true });
+        });
     }
 
     protected render(): React.ReactNode {
@@ -55,6 +66,8 @@ export class ErebusAgentFocusWidget extends ReactWidget {
             conversationSyncService={this.conversationSyncService}
             chatService={this.chatService}
             chatAgentService={this.chatAgentService}
+            toolConfirmationManager={this.toolConfirmationManager}
+            toolInvocationRegistry={this.toolInvocationRegistry}
             onExitFocusMode={() => {
                 this.commandService.executeCommand(ErebusAgentFocusCommands.LEAVE.id).catch(error => console.error(error));
             }}

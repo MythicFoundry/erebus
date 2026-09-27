@@ -83,6 +83,17 @@ export class ConversationSyncServiceImpl implements ConversationSyncService {
     protected cachedSnapshotAt = 0;
 
     async listConversations(force = false): Promise<ConversationSyncSnapshot> {
+        if (process.env.EREBUS_E2E === '1') {
+            return {
+                conversations: [],
+                sources: (['claude', 'codex', 'kiro'] as ConversationProvider[]).map(provider => ({
+                    provider,
+                    available: false,
+                    conversationCount: 0,
+                    message: 'External conversation discovery is disabled for E2E tests.'
+                }))
+            };
+        }
         if (!force && this.cachedSnapshot && Date.now() - this.cachedSnapshotAt < SNAPSHOT_CACHE_MS) {
             return this.cachedSnapshot;
         }

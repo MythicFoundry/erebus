@@ -58,14 +58,26 @@ export interface FocusMessage {
     agentName?: string;
     executionProfile?: string;
     toolCalls?: number;
+    toolDetails?: FocusToolCall[];
     changedFiles?: string[];
     elapsed?: string;
+}
+
+export type FocusToolCallStatus = 'approval' | 'running' | 'complete';
+
+export interface FocusToolCall {
+    id: string;
+    name: string;
+    status: FocusToolCallStatus;
+    detail?: string;
 }
 
 export interface SpecTask {
     id: string;
     label: string;
     complete: boolean;
+    prompt?: string;
+    awaitingReview?: boolean;
 }
 
 export type ChangeReviewState = 'pending' | 'accepted' | 'rejected';
@@ -115,6 +127,7 @@ export interface FocusSession {
     truncatedMessages?: number;
     tags?: string[];
     hidden?: boolean;
+    workflow?: WorkflowKind;
 }
 
 export type WorkflowKind = 'Spec' | 'Plan' | 'Bug Fix' | 'Quick Spec';
