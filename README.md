@@ -21,14 +21,16 @@ The Erebus surface follows a deliberate three-column hierarchy:
 
 Implemented interactions include:
 
-- switching and creating sessions;
-- collapsing the session rail to monogram tiles;
-- opening and resolving attention requests in place;
-- toggling context and changes views;
-- stepping through task progress;
-- submitting local prototype messages;
-- returning to the full Theia IDE and reopening Agent Focus with `Ctrl/Cmd+Alt+A`.
-- moving and resizing the frameless Electron window, plus dedicated minimize, maximize/restore, full-screen, and close controls.
+- creating structured or freeform sessions in a chosen workspace, then pinning, renaming, hiding, or removing local sessions;
+- persisting local sessions, layout state, composer preferences, tags, categories, and the selected conversation across reloads;
+- running Coder, Explore, or Code Reviewer through Theia's real chat service, with streaming responses, cancellation, reasoning controls, context attachments, and Coder autopilot;
+- surfacing live tool approvals and structured agent questions as explicit attention cards without changing the active session;
+- running individual or remaining workflow tasks through the agent and completing them only after a successful response;
+- reviewing the live Theia change set, opening full diffs, applying or reverting files, and drafting file-specific feedback;
+- navigating session and settings history with toolbar controls or `Ctrl/Cmd+[` and `Ctrl/Cmd+]`;
+- resizing or collapsing the project rail, toggling the context panel, and using a focused settings surface for layout, source status, updates, and the full IDE settings editor;
+- returning to the full Theia IDE and reopening Agent Focus with `Ctrl/Cmd+Alt+A`;
+- moving and resizing the frameless Electron window, plus dedicated minimize, maximize/restore, full-screen, and close controls;
 - discovering Claude, Codex, and Kiro conversations from their local stores, grouping them by provider and workspace, and loading message history on demand.
 
 The main source is under [`theia-extensions/erebus-agent-focus`](theia-extensions/erebus-agent-focus). The color tokens live at the top of [`agent-focus.css`](theia-extensions/erebus-agent-focus/src/browser/style/agent-focus.css).

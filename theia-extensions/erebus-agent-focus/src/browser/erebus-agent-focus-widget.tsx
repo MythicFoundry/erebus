@@ -8,7 +8,8 @@
  ********************************************************************************/
 
 import * as React from 'react';
-import { Message, ReactWidget } from '@theia/core/lib/browser';
+import { ChatAgentService, ChatService } from '@theia/ai-chat';
+import { CommonCommands, Message, ReactWidget } from '@theia/core/lib/browser';
 import { CommandService } from '@theia/core/lib/common/command';
 import { inject, injectable, postConstruct } from '@theia/core/shared/inversify';
 import { ConversationSyncService } from '../common/conversation-sync-protocol';
@@ -25,6 +26,12 @@ export class ErebusAgentFocusWidget extends ReactWidget {
 
     @inject(ConversationSyncService)
     protected readonly conversationSyncService: ConversationSyncService;
+
+    @inject(ChatService)
+    protected readonly chatService: ChatService;
+
+    @inject(ChatAgentService)
+    protected readonly chatAgentService: ChatAgentService;
 
     @postConstruct()
     protected init(): void {
@@ -44,8 +51,19 @@ export class ErebusAgentFocusWidget extends ReactWidget {
     }
 
     protected render(): React.ReactNode {
-        return <AgentFocusView conversationSyncService={this.conversationSyncService} onExitFocusMode={() => {
-            this.commandService.executeCommand(ErebusAgentFocusCommands.LEAVE.id).catch(error => console.error(error));
-        }} />;
+        return <AgentFocusView
+            conversationSyncService={this.conversationSyncService}
+            chatService={this.chatService}
+            chatAgentService={this.chatAgentService}
+            onExitFocusMode={() => {
+                this.commandService.executeCommand(ErebusAgentFocusCommands.LEAVE.id).catch(error => console.error(error));
+            }}
+            onOpenFullSettings={() => {
+                this.commandService.executeCommand(ErebusAgentFocusCommands.LEAVE.id)
+                    .then(() => this.commandService.executeCommand(CommonCommands.OPEN_PREFERENCES.id))
+                    .catch(error => console.error(error));
+            }}
+            onCheckForUpdates={() => this.commandService.executeCommand('electron-theia:check-for-updates')}
+        />;
     }
 }

@@ -68,6 +68,26 @@ export interface SpecTask {
     complete: boolean;
 }
 
+export type ChangeReviewState = 'pending' | 'accepted' | 'rejected';
+
+export interface FocusAttentionOption {
+    id: string;
+    label: string;
+    description?: string;
+    primary?: boolean;
+    destructive?: boolean;
+}
+
+export interface FocusAttentionRequest {
+    id: string;
+    kind: 'tool' | 'question';
+    title: string;
+    message: string;
+    detail?: string;
+    options: FocusAttentionOption[];
+    timedOut?: boolean;
+}
+
 export interface FocusSession {
     id: string;
     provider: SessionProvider;
@@ -85,6 +105,10 @@ export interface FocusSession {
     designNotes: string[];
     tasks: SpecTask[];
     changedFiles: string[];
+    chatSessionId?: string;
+    pinned?: boolean;
+    attention?: FocusAttentionRequest;
+    changeReviews?: Record<string, ChangeReviewState>;
     sourceUpdatedAt?: string;
     readOnly?: boolean;
     loading?: boolean;
