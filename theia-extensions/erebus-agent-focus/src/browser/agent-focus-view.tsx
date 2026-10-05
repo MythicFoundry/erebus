@@ -3565,7 +3565,7 @@ export function AgentFocusView({ conversationSyncService, chatService, chatAgent
     };
     const removeSession = (sessionId: string): void => {
         const session = sessions.find(candidate => candidate.id === sessionId);
-        if (!session || session.provider !== 'erebus' || !window.confirm(`Remove “${session.title}”?`)) {
+        if (!session || session.provider !== 'erebus' || !window.confirm(`Remove "${session.title}"?`)) {
             return;
         }
         if (activeRequestsRef.current.has(sessionId)) {
