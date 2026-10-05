@@ -56,7 +56,7 @@ export class TheiaLauncherServiceEndpoint implements BackendApplicationContribut
 
     protected async computeState(uriScheme: string): Promise<LauncherEndpointState> {
         if (!process.env.APPIMAGE) {
-            // Not running from an AppImage — nothing to install.
+            // Not running from an AppImage - nothing to install.
             return 'up-to-date';
         }
         const launcher = `/usr/local/bin/${uriScheme}`;
@@ -71,14 +71,14 @@ export class TheiaLauncherServiceEndpoint implements BackendApplicationContribut
             return 'needs-prompt';
         }
         if (latest.target === undefined) {
-            // Previously declined for this scheme — don't re-prompt.
+            // Previously declined for this scheme - don't re-prompt.
             return 'up-to-date';
         }
         if (latest.target !== process.env.APPIMAGE) {
-            // AppImage path changed — ask for consent again.
+            // AppImage path changed - ask for consent again.
             return 'needs-prompt';
         }
-        // Prior consent recorded for this AppImage — re-apply silently if the on-disk
+        // Prior consent recorded for this AppImage - re-apply silently if the on-disk
         // script no longer matches what the current generator would produce.
         const logFile = await this.getLogFilePath();
         const expected = this.buildLauncherScript(process.env.APPIMAGE, logFile);
@@ -97,7 +97,7 @@ export class TheiaLauncherServiceEndpoint implements BackendApplicationContribut
     // which would swallow --help / --version output. Detect those flags up front
     // and exec without redirect so the text reaches the user's terminal.
     // setsid -f forks the AppImage into a new session, fully detached from the
-    // terminal — so closing the terminal does not prompt about a still-running
+    // terminal - so closing the terminal does not prompt about a still-running
     // process and SIGHUP cannot reach the IDE.
     protected buildLauncherScript(target: string, logFile: string): string {
         const t = this.bashQuote(target);

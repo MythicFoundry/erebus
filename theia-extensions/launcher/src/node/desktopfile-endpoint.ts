@@ -68,7 +68,7 @@ export class TheiaDesktopFileServiceEndpoint implements BackendApplicationContri
         if (!info || info.appImage !== process.env.APPIMAGE) {
             return info?.declined?.includes(process.env.APPIMAGE) ? 'up-to-date' : 'needs-prompt';
         }
-        // Prior consent recorded for this AppImage — re-apply silently if the on-disk
+        // Prior consent recorded for this AppImage - re-apply silently if the on-disk
         // files no longer match what the current launcher template would render.
         return this.isOnDiskUpToDate(applicationName, uriScheme) ? 'up-to-date' : 'needs-silent-update';
     }

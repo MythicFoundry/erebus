@@ -942,7 +942,7 @@ function SessionRow({ session, active, collapsed, onSelect, onTogglePin, onRenam
             type='button'
             className={`erebus-session-tile${active ? ' is-active' : ''}`}
             onClick={onSelect}
-            title={`${session.title} — ${statusLabels[session.status]}`}
+            title={`${session.title} - ${statusLabels[session.status]}`}
             aria-label={`${session.title}, ${statusLabels[session.status]}`}
         >
             <span className='erebus-session-monogram' style={{ '--session-accent': session.accent } as React.CSSProperties}>
@@ -3288,7 +3288,7 @@ export function AgentFocusView({ conversationSyncService, chatService, chatAgent
 
     const createSession = (input: NewSessionInput): void => {
         const id = `session-${Date.now()}`;
-        const title = input.workflow ? `${input.workflow} — Untitled task` : 'Untitled agent session';
+        const title = input.workflow ? `${input.workflow} - Untitled task` : 'Untitled agent session';
         const template = input.workflow ? WORKFLOW_TEMPLATES[input.workflow] : undefined;
         const session: FocusSession = {
             id,

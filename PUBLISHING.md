@@ -53,7 +53,7 @@ If commits have already landed on `master` since the last minor release and shou
    git push origin release/{{version}}
    ```
 
-2. Commit your patch changes directly on this branch — **no PR is required**.
+2. Commit your patch changes directly on this branch - **no PR is required**.
 
 When using this path, see the adjusted instructions in [2.5 Mac Artifacts](#25-mac-artifacts) and [2.6 Merge Release PR & Trigger Jenkins Build](#26-merge-release-pr--trigger-jenkins-build).
 
@@ -254,7 +254,7 @@ Once the PR is merged and the preview build is created, follow these steps for t
 ### 3.3 Patch Releases
 <!-- release: patch -->
 
-- Address reported blockers and issue patch releases (this process may take 1–2 weeks).
+- Address reported blockers and issue patch releases (this process may take 1-2 weeks).
 
    **Note:** If issues are persistent, or resources are insufficient, the release may be postponed to the next version.
 

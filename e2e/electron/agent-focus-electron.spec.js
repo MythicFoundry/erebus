@@ -39,7 +39,7 @@ test('runs Agent Focus in a resizable Electron window with functional workflow c
         const dialog = page.getByRole('dialog', { name: 'New agent session' });
         await dialog.getByRole('button', { name: /^Bug Fix/ }).click();
         await dialog.getByRole('button', { name: /Create Bug Fix/ }).click();
-        await expect(page.getByRole('main').getByRole('heading', { name: 'Bug Fix — Untitled task' })).toBeVisible();
+        await expect(page.getByRole('main').getByRole('heading', { name: 'Bug Fix - Untitled task' })).toBeVisible();
         await expect(page.getByRole('button', { name: /Reproduce the failure/ })).toBeVisible();
         await expect(page.getByRole('button', { name: 'Stop agent' })).toHaveCount(0);
     } finally {

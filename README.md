@@ -15,9 +15,9 @@ The Agent Focus surface includes local Erebus fixtures plus read-only, live conv
 
 The Erebus surface follows a deliberate three-column hierarchy:
 
-1. **Sessions** — grouped local, cloud, and CLI work with working, attention, paused, and complete states.
-2. **Conversation** — the widest column, with tool-call disclosure, response metrics, change summaries, and a persistent composer.
-3. **Context** — an optional brief, task progress, changed-file list, and inline diff review.
+1. **Sessions** - grouped local, cloud, and CLI work with working, attention, paused, and complete states.
+2. **Conversation** - the widest column, with tool-call disclosure, response metrics, change summaries, and a persistent composer.
+3. **Context** - an optional brief, task progress, changed-file list, and inline diff review.
 
 Implemented interactions include:
 

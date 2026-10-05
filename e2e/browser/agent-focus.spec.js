@@ -13,7 +13,7 @@ test.beforeEach(async ({ page }) => {
 
 test('starts empty without demo sessions and exposes working creation controls', async ({ page }) => {
     await expect(page.getByRole('heading', { name: 'Start focused work' })).toBeVisible();
-    await expect(page.getByText('Agent upgrade — modularize provider layer')).toHaveCount(0);
+    await expect(page.getByText('Agent upgrade - modularize provider layer')).toHaveCount(0);
 
     const newSessionButton = page.locator('.erebus-session-rail').getByRole('button', { name: 'New session' });
     const dialog = await openNewSession(page);
@@ -29,7 +29,7 @@ test('creates a complete Spec workflow with reviewable tasks and real access cho
     const dialog = await openNewSession(page);
     await dialog.getByRole('button', { name: /Create Spec/ }).click();
 
-    await expect(page.getByRole('main').getByRole('heading', { name: 'Spec — Untitled task' })).toBeVisible();
+    await expect(page.getByRole('main').getByRole('heading', { name: 'Spec - Untitled task' })).toBeVisible();
     await expect(page.getByRole('button', { name: /Clarify requirements/ })).toBeVisible();
     await expect(page.getByRole('button', { name: /Implement and verify/ })).toBeVisible();
     await expect(page.getByRole('textbox', { name: 'Message the agent' }))
@@ -47,7 +47,7 @@ test('removing the last session returns to a stable empty view', async ({ page }
     const dialog = await openNewSession(page);
     await dialog.getByRole('button', { name: /Create Spec/ }).click();
 
-    await page.getByRole('button', { name: 'Manage Spec — Untitled task' }).click();
+    await page.getByRole('button', { name: 'Manage Spec - Untitled task' }).click();
     page.once('dialog', confirmation => confirmation.accept());
     await page.getByRole('menuitem', { name: 'Remove session' }).click();
 
